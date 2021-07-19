@@ -43,7 +43,7 @@ class Home extends StatelessWidget {
   }
 
   void insertItem() {
-    final newIndex = 1;
+    final newIndex = 0;
     final newItem = ListItem(
       title: 'NewItem',
       urlImage: 
