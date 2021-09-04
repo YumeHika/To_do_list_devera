@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:aking/screens/auth/forget_pass.dart';
 import 'package:aking/screens/auth/register.dart';
-<<<<<<< Updated upstream
-=======
 import 'package:aking/services/global_methods.dart';
->>>>>>> Stashed changes
 
 class Login extends StatefulWidget {
   @override
@@ -22,6 +20,8 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
       TextEditingController(text: '');
   FocusNode _passFocusNode = FocusNode();
   bool _obscureText = true;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool _isLoading = false;
   final _loginFormKey = GlobalKey<FormState>();
   @override
   void dispose() {
@@ -51,9 +51,28 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     super.initState();
   }
 
-  void _submitFormOnLogin() {
+  void _submitFormOnLogin() async {
     final isValid = _loginFormKey.currentState!.validate();
-    if (isValid) {}
+    if (isValid) {
+      setState(() {
+        _isLoading = true;
+      });
+      try {
+        await _auth.signInWithEmailAndPassword(
+            email: _emailTextController.text.trim().toLowerCase(),
+            password: _passTextController.text.trim());
+        Navigator.canPop(context) ? Navigator.pop(context) : null;
+      } catch (errorrr) {
+        setState(() {
+          _isLoading = false;
+        });
+        GlobalMethod.showErrorDialog(error: errorrr.toString(), ctx: context);
+        print('error occured $errorrr');
+      }
+    }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override

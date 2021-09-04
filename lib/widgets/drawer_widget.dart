@@ -1,14 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:aking/constants/constants.dart';
 import 'package:aking/inner_screens/profile.dart';
 import 'package:aking/inner_screens/upload_task.dart';
 import 'package:aking/screens/all_workers.dart';
 import 'package:aking/screens/tasks_screen.dart';
-<<<<<<< Updated upstream
-=======
 
 import '../user_state.dart';
->>>>>>> Stashed changes
 
 class DrawerWidget extends StatelessWidget {
   @override
@@ -30,11 +28,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 Flexible(
                   child: Text(
-<<<<<<< Updated upstream
-                    'Aking',
-=======
                     'Aking Devera',
->>>>>>> Stashed changes
                     style: TextStyle(
                         color: Constants.darkBlue,
                         fontSize: 22,
@@ -89,10 +83,15 @@ class DrawerWidget extends StatelessWidget {
   }
 
   void _navigateToProfileScreen(context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final User? user = _auth.currentUser;
+    final String uid = user!.uid;
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => ProfileScreen(),
+        builder: (context) => ProfileScreen(
+          userID: uid,
+        ),
       ),
     );
   }
@@ -125,6 +124,7 @@ class DrawerWidget extends StatelessWidget {
   }
 
   void _logout(context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
     showDialog(
         context: context,
         builder: (context) {
@@ -162,7 +162,16 @@ class DrawerWidget extends StatelessWidget {
                 child: Text('Cancel'),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  _auth.signOut();
+                  Navigator.canPop(context) ? Navigator.pop(context) : null;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UserState(),
+                    ),
+                  );
+                },
                 child: Text(
                   'OK',
                   style: TextStyle(color: Colors.red),

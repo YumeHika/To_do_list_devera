@@ -1,34 +1,20 @@
 import 'dart:async';
-<<<<<<< Updated upstream
-import 'package:aking/screens/Onboarding.dart';
-import 'package:flutter/material.dart';
-import 'screens/auth/login.dart';
-=======
 import 'package:nb_utils/nb_utils.dart';
 import 'package:aking/screens/Onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
->>>>>>> Stashed changes
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
-<<<<<<< Updated upstream
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter TaskYK',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFFEDE7DC),
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-=======
     return FutureBuilder(
       future: _initialization,
       builder: (context, snapshot) {
@@ -65,7 +51,6 @@ class MyApp extends StatelessWidget {
           home: MyHomePage(),
         );
       },
->>>>>>> Stashed changes
     );
   }
   
@@ -114,35 +99,4 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
 void finish(BuildContext context, [Object? result]) {
   if (Navigator.canPop(context)) Navigator.pop(context, result);
-}
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    Timer(Duration(seconds: 3), openOnBoard);
-    super.initState();
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/image/aking.png'),
-            )
-          ),
-        ),
-      ),
-    );
-  }
-  void openOnBoard()
-  {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>Onboarding()));
-  }
 }

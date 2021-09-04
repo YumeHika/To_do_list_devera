@@ -1,11 +1,6 @@
 {
-<<<<<<< Updated upstream
-    "name": "aking",
-    "short_name": "aking",
-=======
     "name": "aking_english",
     "short_name": "aking_english",
->>>>>>> Stashed changes
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

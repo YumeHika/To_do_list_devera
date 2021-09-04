@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream
-import 'package:aking/constants/constants.dart';
-=======
 import 'package:url_launcher/url_launcher.dart';
 import 'package:aking/constants/constants.dart';
 import 'package:aking/inner_screens/profile.dart';
->>>>>>> Stashed changes
 
 class AllWorkersWidget extends StatefulWidget {
+  final String userID;
+  final String userName;
+  final String userEmail;
+  final String positionInCompany;
+  final String phoneNumber;
+  final String userImageUrl;
+
+  const AllWorkersWidget(
+      {required this.userID,
+      required this.userName,
+      required this.userEmail,
+      required this.positionInCompany,
+      required this.phoneNumber,
+      required this.userImageUrl});
   @override
   _AllWorkersWidgetState createState() => _AllWorkersWidgetState();
 }
@@ -19,7 +29,16 @@ class _AllWorkersWidgetState extends State<AllWorkersWidget> {
       elevation: 8,
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       child: ListTile(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProfileScreen(
+                  userID: widget.userID,
+                ),
+              ),
+            );
+          },
           contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           leading: Container(
             padding: EdgeInsets.only(right: 12),
@@ -31,12 +50,13 @@ class _AllWorkersWidgetState extends State<AllWorkersWidget> {
             child: CircleAvatar(
               backgroundColor: Colors.transparent,
               radius: 20,
-              child: Image.network(
-                  'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png'),
+              child: Image.network(widget.userImageUrl == null
+                  ? 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png'
+                  : widget.userImageUrl),
             ),
           ),
           title: Text(
-            'Worker Name',
+            widget.userName,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -53,7 +73,7 @@ class _AllWorkersWidgetState extends State<AllWorkersWidget> {
                 color: Colors.pink.shade800,
               ),
               Text(
-                'Position/6539494',
+                '${widget.positionInCompany}/${widget.phoneNumber}',
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 16),
@@ -66,8 +86,19 @@ class _AllWorkersWidgetState extends State<AllWorkersWidget> {
               size: 30,
               color: Colors.pink.shade800,
             ),
-            onPressed: () {},
+            onPressed: _mailTo,
           )),
     );
+  }
+
+  void _mailTo() async {
+    var mailUrl = 'mailto:${widget.userEmail}';
+    print('widget.userEmail ${widget.userEmail}');
+    if (await canLaunch(mailUrl)) {
+      await launch(mailUrl);
+    } else {
+      print('Erorr');
+      throw 'Error occured';
+    }
   }
 }

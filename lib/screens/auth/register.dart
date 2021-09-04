@@ -1,15 +1,15 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:aking/constants/constants.dart';
-<<<<<<< Updated upstream
-=======
 import 'package:aking/services/global_methods.dart';
->>>>>>> Stashed changes
 
 class SignUp extends StatefulWidget {
   @override
@@ -37,6 +37,9 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
   bool _obscureText = true;
   final _signUpFormKey = GlobalKey<FormState>();
   File? imageFile;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool _isLoading = false;
+  String? imageUrl;
   @override
   void dispose() {
     _animationController.dispose();
@@ -71,9 +74,51 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
     super.initState();
   }
 
-  void _submitFormOnSignUp() {
+  void _submitFormOnSignUp() async {
     final isValid = _signUpFormKey.currentState!.validate();
-    if (isValid) {}
+    if (isValid) {
+      if (imageFile == null) {
+        GlobalMethod.showErrorDialog(
+            error: 'Please pick an image', ctx: context);
+        return;
+      }
+
+      setState(() {
+        _isLoading = true;
+      });
+
+      try {
+        await _auth.createUserWithEmailAndPassword(
+            email: _emailTextController.text.trim().toLowerCase(),
+            password: _passTextController.text.trim());
+        final User? user = _auth.currentUser;
+        final _uid = user!.uid;
+        final ref = FirebaseStorage.instance
+            .ref()
+            .child('userImages')
+            .child(_uid + '.jpg');
+        await ref.putFile(imageFile!);
+        imageUrl = await ref.getDownloadURL();
+        FirebaseFirestore.instance.collection('users').doc(_uid).set({
+          'id': _uid,
+          'name': _fullNameController.text,
+          'email': _emailTextController.text,
+          'userImage': imageUrl,
+          'phoneNumber': _phoneNumberController.text,
+          'positionInCompany': _postitionCPTextController.text,
+          'createdAt': Timestamp.now(),
+        });
+        Navigator.canPop(context) ? Navigator.pop(context) : null;
+      } catch (errorrr) {
+        setState(() {
+          _isLoading = false;
+        });
+        GlobalMethod.showErrorDialog(error: errorrr.toString(), ctx: context);
+      }
+    }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -403,35 +448,43 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
               SizedBox(
                 height: 80,
               ),
-              MaterialButton(
-                onPressed: _submitFormOnSignUp,
-                color: Colors.pink.shade700,
-                elevation: 8,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(13)),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'SignUp',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
+              _isLoading
+                  ? Center(
+                      child: Container(
+                        width: 70,
+                        height: 70,
+                        child: CircularProgressIndicator(),
                       ),
-                      SizedBox(
-                        width: 8,
+                    )
+                  : MaterialButton(
+                      onPressed: _submitFormOnSignUp,
+                      color: Colors.pink.shade700,
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(13)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'SignUp',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Icon(
+                              Icons.person_add,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
                       ),
-                      Icon(
-                        Icons.person_add,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-              )
+                    )
             ],
           ),
         ),
