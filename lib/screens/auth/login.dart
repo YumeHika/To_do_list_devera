@@ -3,6 +3,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:aking/screens/auth/forget_pass.dart';
 import 'package:aking/screens/auth/register.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:aking/services/global_methods.dart';
+>>>>>>> Stashed changes
 
 class Login extends StatefulWidget {
   @override
@@ -61,7 +65,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
       children: [
         CachedNetworkImage(
           imageUrl:
-              "https://media.istockphoto.com/photos/businesswoman-using-computer-in-dark-office-picture-id557608443?k=6&m=557608443&s=612x612&w=0&h=fWWESl6nk7T6ufo4sRjRBSeSiaiVYAzVrY-CLlfMptM=",
+              "https://wallpapercave.com/wp/wp7542064.jpg",
           placeholder: (context, url) => Image.asset(
             'assets/images/wallpaper.jpg',
             fit: BoxFit.fill,

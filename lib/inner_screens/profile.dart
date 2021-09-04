@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:aking/constants/constants.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:aking/user_state.dart';
+>>>>>>> Stashed changes
 import 'package:aking/widgets/drawer_widget.dart';
 
 class ProfileScreen extends StatefulWidget {

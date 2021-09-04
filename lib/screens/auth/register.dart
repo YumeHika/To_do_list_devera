@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:aking/constants/constants.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:aking/services/global_methods.dart';
+>>>>>>> Stashed changes
 
 class SignUp extends StatefulWidget {
   @override
@@ -81,7 +85,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
       children: [
         CachedNetworkImage(
           imageUrl:
-              "https://media.istockphoto.com/photos/businesswoman-using-computer-in-dark-office-picture-id557608443?k=6&m=557608443&s=612x612&w=0&h=fWWESl6nk7T6ufo4sRjRBSeSiaiVYAzVrY-CLlfMptM=",
+              "https://wallpapercave.com/wp/wp7542064.jpg",
           placeholder: (context, url) => Image.asset(
             'assets/images/wallpaper.jpg',
             fit: BoxFit.fill,
@@ -509,9 +513,6 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin {
       maxHeight: 1080,
       maxWidth: 1080,
     );
-    // setState(() {
-    //   imageFile = File(pickedFile!.path);
-    // });
     _cropImage(pickedFile!.path);
     Navigator.pop(context);
   }

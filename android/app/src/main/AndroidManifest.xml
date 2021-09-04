@@ -1,7 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.aking">
    <application
+<<<<<<< Updated upstream
         android:label="aking"
+=======
+        android:label="aking_english"
+>>>>>>> Stashed changes
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

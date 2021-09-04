@@ -34,9 +34,10 @@ dependencies:
   image_cropper: ^1.4.1
   fluttericon: ^2.0.0
   url_launcher: ^6.0.9
+  nb_utils: ^4.2.11
   
-  firebase_auth: ^3.0.1
-  firebase_core: ^1.4.0
+  firebase_auth: ^3.1.0
+  firebase_core: ^1.6.0
   cloud_firestore: ^2.4.0
   firebase_storage: ^10.0.1
   uuid: ^3.0.4
@@ -58,8 +59,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+<<<<<<< Updated upstream
     - assets/images/wallpaper.jpg
     - assets/image/
+=======
+    - assets/images/
+>>>>>>> Stashed changes
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

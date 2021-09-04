@@ -4,6 +4,11 @@ import 'package:aking/inner_screens/profile.dart';
 import 'package:aking/inner_screens/upload_task.dart';
 import 'package:aking/screens/all_workers.dart';
 import 'package:aking/screens/tasks_screen.dart';
+<<<<<<< Updated upstream
+=======
+
+import '../user_state.dart';
+>>>>>>> Stashed changes
 
 class DrawerWidget extends StatelessWidget {
   @override
@@ -25,7 +30,11 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 Flexible(
                   child: Text(
+<<<<<<< Updated upstream
                     'Aking',
+=======
+                    'Aking Devera',
+>>>>>>> Stashed changes
                     style: TextStyle(
                         color: Constants.darkBlue,
                         fontSize: 22,

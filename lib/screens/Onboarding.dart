@@ -1,5 +1,12 @@
+<<<<<<< Updated upstream
 import 'package:flutter/material.dart';
 import 'package:aking/screens/tasks_screen.dart';
+=======
+import 'package:aking/screens/auth/login.dart';
+import 'package:aking/user_state.dart';
+import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
+>>>>>>> Stashed changes
 class Onboarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -12,12 +19,20 @@ class Onboarding extends StatelessWidget {
     );
   }
 }
+<<<<<<< Updated upstream
+=======
+// ignore: camel_case_types
+>>>>>>> Stashed changes
 class onboarding extends StatefulWidget {
 
   @override
   _onboardingState createState() => _onboardingState();
 }
 
+<<<<<<< Updated upstream
+=======
+// ignore: camel_case_types
+>>>>>>> Stashed changes
 class _onboardingState extends State<onboarding> {
   int currentPage = 0;
   PageController _pageController = new PageController(
@@ -60,13 +75,18 @@ class _onboardingState extends State<onboarding> {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 image: DecorationImage(
+<<<<<<< Updated upstream
                   image: AssetImage('assets/image/path1.png'),
+=======
+                  image: AssetImage('assets/images/path1.png'),
+>>>>>>> Stashed changes
                   fit: BoxFit.fill
                 )
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+<<<<<<< Updated upstream
                   InkWell(
                     onTap: openLoginPage,
                     child: Container(
@@ -85,6 +105,27 @@ class _onboardingState extends State<onboarding> {
                       ),),
                     ),
                   ),
+=======
+                  Container(
+                          margin: EdgeInsets.only(bottom: 0, left: 20, right: 20),
+                          height: 50,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(                      
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                              elevation: 1,
+                            ),
+                            onPressed: () {
+                              finish(context);
+                              UserState().launch(context);
+                            },
+                            child: Text(
+                              "Get Started",
+                              textAlign: TextAlign.center,
+                              style: boldTextStyle(size: 16, color: Colors.white, letterSpacing: 2),
+                            ),
+                          ),
+                        ),
+>>>>>>> Stashed changes
                   SizedBox(height: 30,),
                   Text("Login", style: TextStyle(
                     color: Colors.white,
@@ -126,7 +167,11 @@ class _onboardingState extends State<onboarding> {
           padding: EdgeInsets.all(50),
           decoration: BoxDecoration(
             image: DecorationImage(
+<<<<<<< Updated upstream
               image: AssetImage('assets/image/$img.png')
+=======
+              image: AssetImage('assets/images/$img.png')
+>>>>>>> Stashed changes
             )
           ),
         ),
@@ -152,6 +197,7 @@ class _onboardingState extends State<onboarding> {
   {
     currentPage = value;
     setState(() {
+<<<<<<< Updated upstream
 
     });
   }
@@ -159,4 +205,8 @@ class _onboardingState extends State<onboarding> {
   {
     Navigator.push(context, MaterialPageRoute(builder: (context)=>TasksScreen()));
   }
+=======
+    });
+  }
+>>>>>>> Stashed changes
 }

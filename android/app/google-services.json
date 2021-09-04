@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "376866471194",
-    "project_id": "workosenglsih",
-    "storage_bucket": "workosenglsih.appspot.com"
+    "project_number": "217527859065",
+    "project_id": "akingdevera",
+    "storage_bucket": "akingdevera.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:376866471194:android:4c2da80041fba9b36100a3",
+        "mobilesdk_app_id": "1:217527859065:android:d8a1c94e3484c7b56ba1a8",
         "android_client_info": {
           "package_name": "com.example.aking"
         }
       },
       "oauth_client": [
         {
-          "client_id": "376866471194-i6o63ue02o3c61v2cffbfnvk32u7l6pr.apps.googleusercontent.com",
+          "client_id": "217527859065-0ohjb0alv3vp2l1dj7e3ka9d65h7lqk3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD-aXd4GtVs-e9ZK2TGC5NqGq27Zpr0Gug"
+          "current_key": "AIzaSyCDnLuYSnUyY13Q1o-PSUt2g61f-OVxa6Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "376866471194-i6o63ue02o3c61v2cffbfnvk32u7l6pr.apps.googleusercontent.com",
+              "client_id": "217527859065-0ohjb0alv3vp2l1dj7e3ka9d65h7lqk3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

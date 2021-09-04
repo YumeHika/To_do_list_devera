@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:aking/inner_screens/profile.dart';
+>>>>>>> Stashed changes
 
 class CommentWidget extends StatelessWidget {
   List<Color> _colors = [
