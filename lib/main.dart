@@ -97,6 +97,4 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   }
 }
 
-void finish(BuildContext context, [Object? result]) {
-  if (Navigator.canPop(context)) Navigator.pop(context, result);
-}
+
