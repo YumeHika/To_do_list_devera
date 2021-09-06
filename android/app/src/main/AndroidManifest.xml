@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.aking">
+    <uses-permission android:name="adroid.permission.INTERNET"/>
    <application
-        android:label="aking_english"
+        android:label="Aking"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
