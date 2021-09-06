@@ -1,3 +1,3 @@
-Aking Devera
-Todolist App
+Aking Devera (To do list app)
+
 Available APK File to Download
