@@ -61,7 +61,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
         await _auth.signInWithEmailAndPassword(
             email: _emailTextController.text.trim().toLowerCase(),
             password: _passTextController.text.trim());
-        Navigator.canPop(context) ? Navigator.pop(context) : null;
+        Navigator.canPop(context);
       } catch (errorrr) {
         setState(() {
           _isLoading = false;
