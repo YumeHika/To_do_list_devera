@@ -49,13 +49,13 @@ class DrawerWidget extends StatelessWidget {
               },
               icon: Icons.task_outlined),
           _listTiles(
-              label: 'My account',
+              label: 'Profile',
               fct: () {
                 _navigateToProfileScreen(context);
               },
               icon: Icons.settings_outlined),
           _listTiles(
-              label: 'Registered Workers',
+              label: 'Members',
               fct: () {
                 _navigateToAllWorkersScreen(context);
               },

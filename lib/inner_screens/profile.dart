@@ -1,3 +1,6 @@
+import 'package:aking/inner_screens/upload_task.dart';
+import 'package:aking/screens/all_workers.dart';
+import 'package:aking/screens/tasks_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +19,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  String? taskCategoryFilter;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var _titleTextStyle = TextStyle(
       fontSize: 22, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold);
@@ -267,8 +271,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-    );
+        );
+        
   }
+
 
   void _openWhatsAppChat() async {
     var url = 'https://wa.me/$phoneNumber?text=HelloWorld';

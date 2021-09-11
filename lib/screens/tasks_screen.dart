@@ -1,8 +1,13 @@
+import 'package:aking/inner_screens/profile.dart';
+import 'package:aking/inner_screens/upload_task.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:aking/constants/constants.dart';
 import 'package:aking/widgets/drawer_widget.dart';
 import 'package:aking/widgets/task_widget.dart';
+
+import 'all_workers.dart';
 
 class TasksScreen extends StatefulWidget {
   @override
@@ -20,19 +25,6 @@ class _TasksScreenState extends State<TasksScreen> {
           iconTheme: IconThemeData(
             color: Colors.black,
           ),
-          // leading: Builder(
-          //   builder: (ctx) {
-          //     return IconButton(
-          //       icon: Icon(
-          //         Icons.menu,
-          //         color: Colors.black,
-          //       ),
-          //       onPressed: () {
-          //         Scaffold.of(ctx).openDrawer();
-          //       },
-          //     );
-          //   },
-          // ),
           elevation: 0,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Text(
@@ -82,7 +74,99 @@ class _TasksScreenState extends State<TasksScreen> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             ));
           },
-        ));
+          ),
+        bottomNavigationBar: SizedBox(
+                height: 70.0,
+                child: BottomAppBar(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: IconButton(
+                              icon: Image.asset('assets/images/task.png'),
+                              iconSize: 30,
+                              onPressed: () {
+                                _navigateToAllTasksScreen(context);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: Text('All Tasks',
+                                style: TextStyle(color: Color(0xff8E8E93))),
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: IconButton(
+                                icon: Image.asset('assets/images/workers.png'),
+                                onPressed: () {
+                                  _navigateToAllWorkersScreen(context);
+                                }),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: Text('Members',
+                                style: TextStyle(color: Color(0xff8E8E93))),
+                          )
+                        ],
+                      ),
+                      Divider(
+                        color: Color(0xff292E4E),
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: IconButton(
+                                icon: Image.asset('assets/images/categories.png'),
+                                onPressed: () {
+                                  _showTaskCategoriesDialog(size: size);
+                                }),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: Text('Category',
+                                style: TextStyle(color: Color(0xff8E8E93))),
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: IconButton(
+                                icon: Image.asset('assets/images/profile.png'),
+                                onPressed: () {                         
+                                  _navigateToProfileScreen(context);
+                                }),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child:
+                            Text('Profile', style: TextStyle(color: Colors.white)),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  color: Color(0xff292E4E),
+                ),
+              ),
+              floatingActionButton: FloatingActionButton(
+                  child: Icon(Icons.add),
+                  backgroundColor: Color(0xffF96060),
+                  onPressed: () {
+                    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => UploadTask(),),);
+                  }),
+              floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        );
   }
 
   _showTaskCategoriesDialog({required Size size}) {
@@ -153,3 +237,34 @@ class _TasksScreenState extends State<TasksScreen> {
         });
   }
 }
+
+void _navigateToAllWorkersScreen(context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AllWorkersScreen(),
+      ),
+    );
+  }
+
+void _navigateToAllTasksScreen(context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TasksScreen(),
+      ),
+    );
+  }
+    void _navigateToProfileScreen(context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final User? user = _auth.currentUser;
+    final String uid = user!.uid;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfileScreen(
+          userID: uid,
+        ),
+      ),
+    );
+  }
