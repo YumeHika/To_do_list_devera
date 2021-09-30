@@ -5,4 +5,4 @@ Aking Devera (To do list app)
 Available APK File to Download
 
 
-[Course Completion Certificate - Nguyen Hoang Tuan.pdf](https://github.com/YumeHika/To_do_list_devera/files/7256181/Course.Completion.Certificate.-.Nguyen.Hoang.Tuan.pdf)
+![Course Completion Certificate - Nguyen Hoang Tuan](https://user-images.githubusercontent.com/67272597/135376472-79d55e78-d464-4913-84ef-1839de7b1f2d.jpg)
